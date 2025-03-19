@@ -52,10 +52,61 @@ def draw_letters():
     
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    word_dict = {}
+    letter_bank_dict = {}
+
+score_chart =  {"A":1,
+                "B":3,
+                "C":3,
+                "D":2,
+                "E":1,
+                "F":4,
+                "G":2,
+                "H":4,
+                "I":1,
+                "J":8,
+                "K":5,
+                "L":1,
+                "M":3,
+                "N":1,
+                "O":1,
+                "P":3,
+                "Q":10,
+                "R":1,
+                "S":1,
+                "T":1,
+                "U":1,
+                "V":4,
+                "W":4,
+                "X":8,
+                "Y":4,
+                "Z":10
+                }
+# wave_03 :
+# we need to create dict that store letter scores.
+# then we calculate score that add corresponding freuancy to its letter.
+# return total score.
 
 def score_word(word):
-    pass
+    word = word.upper() # change to upper case to compare with score chart.
+    total_score = 0
+
+    word_dict = {} # count how many times letter appears.
+    for letter in word: #loop through each letter in word.
+        if letter in word_dict:
+            word_dict[letter] += 1
+        else:
+            word_dict[letter] = 1    
+
+    for letter, frequancy in word_dict.items(): # loop each letter to find its frequancy and score and sum scores up.
+      total_score += score_chart[letter] * frequancy
+    if len(word) >= 7: # extra 8 points apply when word length >7
+        total_score += 8
+    return total_score
+
+
+
 
 def get_highest_word_score(word_list):
     pass
