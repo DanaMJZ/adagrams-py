@@ -132,6 +132,35 @@ def score_word(word):
 
 
 
+# wave_04:
+# we now have list of words that we need to calculate score for each.
+# then we need to find the highest score word.
+# when multiple words have a tie:
+# the shortest word wins.
+# or the word with 10 character exactly wins.
+# or if words have same lenghth and score the first word wins.
+
 
 def get_highest_word_score(word_list):
-    pass
+
+    winner_word = None # our function should return tuple that should have winner word and its score.
+    highest_score = 0
+
+    for word in word_list:
+        score = score_word(word) # we already defined score_word previously and we are using it as a helper function.
+        
+        if score > highest_score: # for this part we are implementing the charactaristics of winner word.
+            winner_word = word
+            highest_score = score
+        elif score == highest_score: # dealing with tie conditions:
+            if len(word) == 10 and len(winner_word) != 10:
+                winner_word = word
+            elif len(word) < len(winner_word) and len(winner_word) != 10:
+                winner_word = word
+
+    return (winner_word, highest_score)
+
+# note: for this project I understood the logic and psudocode but couldnt put that in code, 
+# I wasnt able to write the functions all by my self,
+# I either was coworking or looking up codes online :(
+# I would appreciate if you can recommend a source to practice putting up logic as codes so I can catch up faster. Thanks!
