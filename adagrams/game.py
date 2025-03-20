@@ -49,12 +49,37 @@ def draw_letters():
 
     return pulled_letters
 
-    
+# wave_02:
+# we need to check if word uses only letter from letter bank.
+# we need to keep in ind frequancies of each letter in both word and letter bank.
+# return True if all letters in word are in letter bank.
+# return False if word letter not in letter bank or word use letter more than it appears in letter bank.
+
 
 def uses_available_letters(word, letter_bank):
+
     word = word.upper()
-    word_dict = {}
-    letter_bank_dict = {}
+    word_freq = {} # counting frequancy for each letter in word
+    for letter in word:
+        if letter in word_freq:
+            word_freq[letter] += 1
+        else:
+            word_freq[letter] = 1
+    
+    letter_bank_freq = {} # Count the frequency of each letter in the letter_bank
+    for letter in letter_bank:
+        letter = letter.upper()  
+        if letter in letter_bank_freq:
+            letter_bank_freq[letter] += 1
+        else:
+            letter_bank_freq[letter] = 1
+    
+    for letter in word_freq:
+        if letter not in letter_bank_freq or word_freq[letter] > letter_bank_freq[letter]:
+            return False
+    
+    return True
+
 
 score_chart =  {"A":1,
                 "B":3,
